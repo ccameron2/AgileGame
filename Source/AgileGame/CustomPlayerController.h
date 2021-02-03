@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "MovablePawn.h"
+
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "CustomPlayerController.generated.h"
@@ -14,4 +16,14 @@ class AGILEGAME_API ACustomPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+protected:
+	virtual void BeginPlay() override;
+
+public:
+
+	virtual void SetupInputComponent();
+	virtual void CallForwards(float Value);
+	virtual void CallTurn(float Value);
+	
+	AMovablePawn* MyPawn;
 };
