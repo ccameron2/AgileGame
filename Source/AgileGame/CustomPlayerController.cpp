@@ -26,6 +26,7 @@ void ACustomPlayerController::CallForwards(float Value)
 {
 	if (MyPawn)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Forward"));
 		MyPawn->MoveForward(Value);
 	}
 }
@@ -34,6 +35,7 @@ void ACustomPlayerController::CallTurn(float Value)
 {
 	if (MyPawn)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Turn"));
 		MyPawn->Turn(Value);
 	}
 }

@@ -26,23 +26,8 @@ AMovablePawn::AMovablePawn()
 
 }
 
-// Called when the game starts or when spawned
-void AMovablePawn::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void AMovablePawn::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 void AMovablePawn::MoveForward(float Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Forward"));
 
 	FVector DeltaLocation = FVector(Value * MoveSpeed * GetWorld()->DeltaTimeSeconds, 0.0f, 0.0f);
 	GetOwner()->AddActorLocalOffset(DeltaLocation, true);
@@ -50,7 +35,6 @@ void AMovablePawn::MoveForward(float Value)
 
 void AMovablePawn::Turn(float Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Turn"));
 
 	float RotateAmount = Value * RotationSpeed * GetWorld()->DeltaTimeSeconds;
 	FRotator Rotation = FRotator(0.0f, RotateAmount, 0.0f);
