@@ -22,23 +22,24 @@ AMovablePawn::AMovablePawn()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 
 	Camera->SetupAttachment(SpringArm);
+	PawnMovement = CreateDefaultSubobject<UCustomMovementComponent>(TEXT("Pawn Movement"));
 
 
 }
 
-void AMovablePawn::MoveForward(float Value)
-{
-
-	FVector DeltaLocation = FVector(Value * MoveSpeed * GetWorld()->DeltaTimeSeconds, 0.0f, 0.0f);
-	GetOwner()->AddActorLocalOffset(DeltaLocation, true);
-}
-
-void AMovablePawn::Turn(float Value)
-{
-
-	float RotateAmount = Value * RotationSpeed * GetWorld()->DeltaTimeSeconds;
-	FRotator Rotation = FRotator(0.0f, RotateAmount, 0.0f);
-	FQuat DeltaRotation = FQuat(Rotation);
-	GetOwner()->AddActorLocalRotation(DeltaRotation, true);
-}
+//void AMovablePawn::MoveForward(float Value)
+//{
+//
+//	FVector DeltaLocation = FVector(Value * MoveSpeed * GetWorld()->DeltaTimeSeconds, 0.0f, 0.0f);
+//	GetOwner()->AddActorLocalOffset(DeltaLocation, true);
+//}
+//
+//void AMovablePawn::Turn(float Value)
+//{
+//
+//	float RotateAmount = Value * RotationSpeed * GetWorld()->DeltaTimeSeconds;
+//	FRotator Rotation = FRotator(0.0f, RotateAmount, 0.0f);
+//	FQuat DeltaRotation = FQuat(Rotation);
+//	GetOwner()->AddActorLocalRotation(DeltaRotation, true);
+//}
 

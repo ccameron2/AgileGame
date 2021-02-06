@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "CustomMovementComponent.h"
+
 #include <Components/StaticMeshComponent.h>
 #include "GameFramework/SpringArmComponent.h"
 #include <Camera/CameraComponent.h>
@@ -22,11 +24,14 @@ public:
 public:	
 
 	// Called to bind functionality to input
-	UFUNCTION()
-		void MoveForward(float Value);
+	//UFUNCTION()
+	//	void MoveForward(float Value);
 
-	UFUNCTION()
-		void Turn(float Value);
+	//UFUNCTION()
+	//	void Turn(float Value);
+
+	UPROPERTY(EditAnywhere)
+		UCustomMovementComponent* PawnMovement;
 
 private:
 
@@ -34,7 +39,7 @@ private:
 		float MoveSpeed = 500.0f;
 
 	UPROPERTY(EditAnywhere)
-		float RotationSpeed = 100.0f;
+		float RotationSpeed = 50.0f;
 
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* CarMesh;
@@ -44,4 +49,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		USpringArmComponent* SpringArm;
+
+
 };

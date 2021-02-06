@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+#include "CustomMovementComponent.h"
 #include "MovablePawn.h"
 
 #include "CoreMinimal.h"
@@ -26,4 +26,5 @@ public:
 	virtual void CallTurn(float Value);
 	
 	AMovablePawn* MyPawn;
+	
 };
