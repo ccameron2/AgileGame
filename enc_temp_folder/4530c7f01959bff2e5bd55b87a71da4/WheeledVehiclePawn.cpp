@@ -120,7 +120,7 @@ void AWheeledVehiclePawn::UpdateInAirControl(float DeltaTime)
 
 		FHitResult Hit;
 
-		//check if the car is on its side or in the air using dot product
+		//check if the car is on its side or in the air
 		const bool bInAir = !GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, QueryParams);
 		const bool bNotGrounded = FVector::DotProduct(GetActorUpVector(), FVector::UpVector) < 0.1f;
 
@@ -137,9 +137,7 @@ void AWheeledVehiclePawn::UpdateInAirControl(float DeltaTime)
 			//PrimitiveComponents contain or generate some sort of geometry, generally to be rendered or used as collision data.
 			if (UPrimitiveComponent* VehicleMesh = Vehicle4W->UpdatedPrimitive)
 			{
-				//make a vector to apply to the actor
 				const FVector MovementVector = FVector(RightInput * -AirMovementForceRoll, ForwardInput * AirMovementForcePitch, 0.0f) * DeltaTime * 200.0f;
-				//Apply vector to actor rotation
 				const FVector NewAngularMovement = GetActorRotation().RotateVector(MovementVector);
 			
 				VehicleMesh->SetPhysicsAngularVelocity(NewAngularMovement, true);
