@@ -3,39 +3,79 @@
 
 #include "CustomPlayerController.h"
 #include "Components/InputComponent.h"
-#include "MovablePawn.h"
 
 void ACustomPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	MyPawn = Cast<AMovablePawn>(GetPawn());
-
+	VehiclePawn = Cast<AWheeledVehiclePawn>(GetPawn());
 }
 
 void ACustomPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	check(InputComponent);
-
-	InputComponent->BindAxis("Drive", this, &ACustomPlayerController::CallForwards);
+	check(InputComponent)
+	InputComponent->BindAxis("Throttle", this, &ACustomPlayerController::CallApplyThrottle);
+	InputComponent->BindAxis("Steer", this, &ACustomPlayerController::CallApplySteering);
+	InputComponent->BindAxis("Look Up", this, &ACustomPlayerController::CallLookUp);
 	InputComponent->BindAxis("Turn", this, &ACustomPlayerController::CallTurn);
+
+	InputComponent->BindAction("Handbrake", IE_Pressed, this, &ACustomPlayerController::CallOnHandbrakePressed);
+	InputComponent->BindAction("Handbrake", IE_Released, this, &ACustomPlayerController::CallOnHandbrakeReleased);
 }
 
-void ACustomPlayerController::CallForwards(float Value)
+void ACustomPlayerController::CallApplyThrottle(float Value)
 {
-	if (MyPawn)
+	if (VehiclePawn)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Forward"));
-		MyPawn->PawnMovement->MoveForward(Value);
+		VehiclePawn->ApplyThrottle(Value);
+	}
+}
+
+void ACustomPlayerController::CallApplySteering(float Value)
+{
+	if (VehiclePawn)
+	{
+		VehiclePawn->ApplySteering(Value);
+	}
+}
+
+void ACustomPlayerController::CallLookUp(float Value)
+{
+	if (VehiclePawn)
+	{
+		VehiclePawn->LookUp(Value);
 	}
 }
 
 void ACustomPlayerController::CallTurn(float Value)
 {
-	if (MyPawn)
+	if (VehiclePawn)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Turn"));
-		MyPawn->PawnMovement->Turn(Value);
+		VehiclePawn->Turn(Value);
+	}
+}
+
+void ACustomPlayerController::CallOnHandbrakePressed()
+{
+	if (VehiclePawn)
+	{
+		VehiclePawn->OnHandbrakePressed();
+	}
+}
+
+void ACustomPlayerController::CallOnHandbrakeReleased()
+{
+	if (VehiclePawn)
+	{
+		VehiclePawn->OnHandbrakeReleased();
+	}
+}
+
+void ACustomPlayerController::CallUpdateInAirControl(float DeltaTime)
+{
+	if (VehiclePawn)
+	{
+		VehiclePawn->UpdateInAirControl(DeltaTime);
 	}
 }

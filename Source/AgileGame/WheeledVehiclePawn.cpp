@@ -57,15 +57,6 @@ void AWheeledVehiclePawn::Tick(float DeltaTime)
 void AWheeledVehiclePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	PlayerInputComponent->BindAxis("Throttle",this, &AWheeledVehiclePawn::ApplyThrottle);
-	PlayerInputComponent->BindAxis("Steer",this, &AWheeledVehiclePawn::ApplySteering);
-	PlayerInputComponent->BindAxis("Look Up",this, &AWheeledVehiclePawn::LookUp);
-	PlayerInputComponent->BindAxis("Turn",this, &AWheeledVehiclePawn::Turn);
-
-	PlayerInputComponent->BindAction("Handbrake", IE_Pressed, this, &AWheeledVehiclePawn::OnHandbrakePressed);
-	PlayerInputComponent->BindAction("Handbrake", IE_Released, this, &AWheeledVehiclePawn::OnHandbrakeReleased);
-
 }
 
 void AWheeledVehiclePawn::ApplyThrottle(float Value)
