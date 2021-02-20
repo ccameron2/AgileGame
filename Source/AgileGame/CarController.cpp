@@ -15,11 +15,10 @@ void ACarController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	check(InputComponent);
-	InputComponent->BindAxis("ApplySteering", this, &ACarController::CallApplySteering);
+	InputComponent->BindAxis("Steer", this, &ACarController::CallApplySteering);
 	InputComponent->BindAxis("Look Up", this, &ACarController::CallLookUp);
 	InputComponent->BindAxis("Throttle", this, &ACarController::CallForward);
-	InputComponent->BindAxis("Steer", this, &ACarController::CallTurn);
-	InputComponent->BindAxis("Look Up", this, &ACarController::CallLookUp);
+	InputComponent->BindAxis("Turn", this, &ACarController::CallTurn);
 
 	InputComponent->BindAction("Handbrake", IE_Pressed, this, &ACarController::CallOnHandbrakePressed);
 	InputComponent->BindAction("Handbrake", IE_Released, this, &ACarController::CallOnHandbrakeReleased);

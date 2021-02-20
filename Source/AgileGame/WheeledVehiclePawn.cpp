@@ -63,12 +63,15 @@ void AWheeledVehiclePawn::ApplyThrottle(float Value)
 	UWheeledVehicleMovementComponent* VehicleMovementComponent = GetVehicleMovementComponent();
 	VehicleMovementComponent->SetThrottleInput(Value);
 
+	UE_LOG(LogTemp, Warning, TEXT("Throttle"));
 }
 
 void AWheeledVehiclePawn::ApplySteering(float Value)
 {
 	UWheeledVehicleMovementComponent* VehicleMovementComponent = GetVehicleMovementComponent();
 	VehicleMovementComponent->SetSteeringInput(Value);
+
+	UE_LOG(LogTemp, Warning, TEXT("Steer"));
 }
 
 void AWheeledVehiclePawn::LookUp(float Value)
@@ -76,6 +79,7 @@ void AWheeledVehiclePawn::LookUp(float Value)
 	if (Value != 0)
 	{
 		AddControllerPitchInput(Value);
+		UE_LOG(LogTemp, Warning, TEXT("LookUp"));
 	}
 }
 
@@ -84,6 +88,7 @@ void AWheeledVehiclePawn::Turn(float Value)
 	if (Value != 0)
 	{
 		AddControllerYawInput(Value);
+		UE_LOG(LogTemp, Warning, TEXT("Turn"));
 	}
 }
 
