@@ -34,8 +34,6 @@ public:
 	void OnHandbrakePressed();
 	void OnHandbrakeReleased();
 
-	void UpdateInAirControl(float DeltaTime);
-
 	UPROPERTY(EditAnywhere)
 		USpringArmComponent* SpringArm;
 

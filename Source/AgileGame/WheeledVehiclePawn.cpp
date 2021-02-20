@@ -42,16 +42,12 @@ AWheeledVehiclePawn::AWheeledVehiclePawn()
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 	Camera->FieldOfView = 90.0f;
 
-
-
-
 }
 
 void AWheeledVehiclePawn::Tick(float DeltaTime)
 {
 
 	Super::Tick(DeltaTime);
-	UpdateInAirControl(DeltaTime);
 }
 
 void AWheeledVehiclePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -59,13 +55,7 @@ void AWheeledVehiclePawn::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	check(InputComponent)
-	InputComponent->BindAxis("Throttle", this, &AWheeledVehiclePawn::ApplyThrottle);
-	InputComponent->BindAxis("Steer", this, &AWheeledVehiclePawn::ApplySteering);
-	InputComponent->BindAxis("Look Up", this, &AWheeledVehiclePawn::LookUp);
-	InputComponent->BindAxis("Turn", this, &AWheeledVehiclePawn::Turn);
-
-	InputComponent->BindAction("Handbrake", IE_Pressed, this, &AWheeledVehiclePawn::OnHandbrakePressed);
-	InputComponent->BindAction("Handbrake", IE_Released, this, &AWheeledVehiclePawn::OnHandbrakeReleased);
+	
 }
 
 void AWheeledVehiclePawn::ApplyThrottle(float Value)
@@ -108,45 +98,3 @@ void AWheeledVehiclePawn::OnHandbrakeReleased()
 	GetVehicleMovementComponent()->SetHandbrakeInput(false);
 }
 
-void AWheeledVehiclePawn::UpdateInAirControl(float DeltaTime)
-{
-	if (UWheeledVehicleMovementComponent4W* Vehicle4W = CastChecked<UWheeledVehicleMovementComponent4W>(GetVehicleMovement()))
-	{
-		FCollisionQueryParams QueryParams;
-		QueryParams.AddIgnoredActor(this);
-
-		const FVector TraceStart = GetActorLocation() + FVector(0.0f, 0.0f, 50.0f);
-		const FVector TraceEnd = GetActorLocation() - FVector(0.0f, 0.0f, 200.0f);
-
-		FHitResult Hit;
-
-		//check if the car is on its side or in the air using dot product
-		const bool bInAir = !GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_Visibility, QueryParams);
-		const bool bNotGrounded = FVector::DotProduct(GetActorUpVector(), FVector::UpVector) < 0.1f;
-
-		//only allow air movement when in air
-		if (bInAir || bNotGrounded)
-		{
-			const float ForwardInput = InputComponent->GetAxisValue("Throttle");
-			const float RightInput = InputComponent->GetAxisValue("Steer");
-
-			//If car is stuck, allow player to roll car over
-			const float AirMovementForcePitch = 3.0f;
-			const float AirMovementForceRoll = !bInAir && bNotGrounded ? 20.0f : 3.0f;
-			
-			//PrimitiveComponents contain or generate some sort of geometry, generally to be rendered or used as collision data.
-			if (UPrimitiveComponent* VehicleMesh = Vehicle4W->UpdatedPrimitive)
-			{
-				//make a vector to apply to the actor
-				const FVector MovementVector = FVector(RightInput * -AirMovementForceRoll, ForwardInput * AirMovementForcePitch, 0.0f) * DeltaTime * 200.0f;
-				//Apply vector to actor rotation
-				const FVector NewAngularMovement = GetActorRotation().RotateVector(MovementVector);
-			
-				VehicleMesh->SetPhysicsAngularVelocity(NewAngularMovement, true);
-			}
-
-		}
-
-	}
-
-}
