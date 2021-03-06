@@ -13,5 +13,12 @@ UCLASS()
 class AGILEGAME_API AAgileGameGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+protected:
+	virtual void BeginPlay() override;
+public:
+	UFUNCTION()
+		void ChangeLevel();
+private:
+	UFUNCTION()
+		void StartGame();
 };

@@ -2,6 +2,7 @@
 
 
 #include "FinishLine.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AFinishLine::AFinishLine()
@@ -13,7 +14,7 @@ AFinishLine::AFinishLine()
 	FinishLineMesh->SetupAttachment(RootComponent);
 
 	FinishLineCollisionArea = CreateDefaultSubobject<UBoxComponent>(TEXT("OverLapCollision"));
-	FinishLineCollisionArea->SetBoxExtent(FVector(100.0f, 40.0f, 0.0f));
+	FinishLineCollisionArea->SetBoxExtent(FVector(270.0f, 250.0f, 0.0f));
 	FinishLineCollisionArea->SetCollisionProfileName("RaceEndTrigger");
 	FinishLineCollisionArea->SetupAttachment(FinishLineMesh);
 }
@@ -22,7 +23,7 @@ AFinishLine::AFinishLine()
 void AFinishLine::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	gamemodeRef = Cast<AAgileGameGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 	FinishLineCollisionArea->OnComponentEndOverlap.AddDynamic(this, &AFinishLine::OnOverLapEnd);
 }
 
@@ -36,4 +37,5 @@ void AFinishLine::Tick(float DeltaTime)
 void AFinishLine::OnOverLapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Passed Throught"));
+	gamemodeRef->ChangeLevel();
 }

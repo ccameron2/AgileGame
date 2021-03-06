@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+#include "AgileGameGamemodeBase.h"
 #include "Components/BoxComponent.h"	
 
 #include "CoreMinimal.h"
@@ -32,6 +32,12 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 		UBoxComponent* FinishLineCollisionArea;
+
+	UPROPERTY()
+		AAgileGameGameModeBase* gamemodeRef;
+
+	UPROPERTY(EditAnywhere)
+		FName NextLevelName;
 
 	UFUNCTION()
 		void OnOverLapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
