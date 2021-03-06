@@ -36,6 +36,6 @@ void AFinishLine::Tick(float DeltaTime)
 
 void AFinishLine::OnOverLapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Passed Throught"));
+	UE_LOG(LogTemp, Warning, TEXT("Passed Through"));
 	gamemodeRef->ChangeLevel();
 }
