@@ -14,7 +14,7 @@ AFinishLine::AFinishLine()
 	FinishLineMesh->SetupAttachment(RootComponent);
 
 	FinishLineCollisionArea = CreateDefaultSubobject<UBoxComponent>(TEXT("OverLapCollision"));
-	FinishLineCollisionArea->SetBoxExtent(FVector(270.0f, 250.0f, 0.0f));
+	FinishLineCollisionArea->SetBoxExtent(FVector(270.0f, 250.0f, 10.0f));
 	FinishLineCollisionArea->SetCollisionProfileName("RaceEndTrigger");
 	FinishLineCollisionArea->SetupAttachment(FinishLineMesh);
 }
