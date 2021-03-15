@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-#include "Kismet\GameplayStatics.h"
 #include "CarController.h"
+#include "Kismet\GameplayStatics.h"
+
 void ACarController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -27,8 +27,7 @@ void ACarController::CallForward(float Value)
 {
 	if (MyPawn)
 	{
-		MyPawn->ApplyThrottle(Value);
-		
+		MyPawn->ApplyThrottle(Value);	
 	}
 }
 

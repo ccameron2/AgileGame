@@ -19,7 +19,7 @@ class AGILEGAME_API AWheeledVehiclePawn : public AWheeledVehicle
 	GENERATED_BODY()
 	
 public:
-	AWheeledVehiclePawn();
+	AWheeledVehiclePawn(const FObjectInitializer& ObjectInitializer);
 
 	virtual void Tick(float DeltaTime) override;
 

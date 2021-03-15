@@ -7,9 +7,10 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
+#include "AIMovementComponent.h"
 #include "WheeledVehicleMovementComponent4W.h"
 
-AWheeledVehiclePawn::AWheeledVehiclePawn()
+AWheeledVehiclePawn::AWheeledVehiclePawn(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UAIMovementComponent>(AWheeledVehicle::VehicleMovementComponentName))
 {
 	UWheeledVehicleMovementComponent4W* Vehicle4W = CastChecked<UWheeledVehicleMovementComponent4W>(GetVehicleMovement());
 
