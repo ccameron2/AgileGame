@@ -18,6 +18,17 @@ protected:
 public:
 	UFUNCTION()
 		void ChangeLevel();
+	UFUNCTION()
+		void LapPassed();
+
+	UPROPERTY(EditAnywhere)
+		int laps;
+
+	UPROPERTY(EditAnywhere)
+		int maxLaps = 2;
+
+	UPROPERTY(EditAnywhere)
+		FName nextLevelName;
 private:
 	UFUNCTION()
 		void StartGame();

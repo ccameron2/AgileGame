@@ -3,6 +3,7 @@
 
 #include "FinishLine.h"
 #include "Kismet/GameplayStatics.h"
+#include "WheeledVehiclePawn.h"
 
 // Sets default values
 AFinishLine::AFinishLine()
@@ -31,11 +32,14 @@ void AFinishLine::BeginPlay()
 void AFinishLine::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AFinishLine::OnOverLapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Passed Through"));
-	gamemodeRef->ChangeLevel();
+	if (Cast<AWheeledVehiclePawn>(OtherActor))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Passed Through"));
+		gamemodeRef->LapPassed();
+	}
+	
 }
