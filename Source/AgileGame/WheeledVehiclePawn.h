@@ -21,18 +21,18 @@ class AGILEGAME_API AWheeledVehiclePawn : public AWheeledVehicle
 public:
 	AWheeledVehiclePawn(const FObjectInitializer& ObjectInitializer);
 
-	virtual void Tick(float DeltaTime) override;
+	//virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
-	void ApplyThrottle(float Value);
-	void ApplySteering(float Value);
-
+	//void ApplyThrottle(float Value);
+	//void ApplySteering(float Value);
+	//
 	void LookUp(float Value);
 	void Turn(float Value);
-
-	void OnHandbrakePressed();
-	void OnHandbrakeReleased();
+	//
+	//void OnHandbrakePressed();
+	//void OnHandbrakeReleased();
 
 	UPROPERTY(EditAnywhere)
 		USpringArmComponent* SpringArm;

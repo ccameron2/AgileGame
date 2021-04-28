@@ -45,12 +45,12 @@ AWheeledVehiclePawn::AWheeledVehiclePawn(const FObjectInitializer& ObjectInitial
 
 }
 
-void AWheeledVehiclePawn::Tick(float DeltaTime)
-{
-
-	Super::Tick(DeltaTime);
-}
-
+//void AWheeledVehiclePawn::Tick(float DeltaTime)
+//{
+//
+//	Super::Tick(DeltaTime);
+//}
+//
 void AWheeledVehiclePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -58,23 +58,23 @@ void AWheeledVehiclePawn::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	check(InputComponent)
 	
 }
-
-void AWheeledVehiclePawn::ApplyThrottle(float Value)
-{
-	UWheeledVehicleMovementComponent* VehicleMovementComponent = GetVehicleMovementComponent();
-	VehicleMovementComponent->SetThrottleInput(Value);
-
-	//UE_LOG(LogTemp, Warning, TEXT("Throttle"));
-}
-
-void AWheeledVehiclePawn::ApplySteering(float Value)
-{
-	UWheeledVehicleMovementComponent* VehicleMovementComponent = GetVehicleMovementComponent();
-	VehicleMovementComponent->SetSteeringInput(Value);
-
-	//UE_LOG(LogTemp, Warning, TEXT("Steer"));
-}
-
+//
+//void AWheeledVehiclePawn::ApplyThrottle(float Value)
+//{
+//	UWheeledVehicleMovementComponent* VehicleMovementComponent = GetVehicleMovementComponent();
+//	VehicleMovementComponent->SetThrottleInput(Value);
+//
+//	//UE_LOG(LogTemp, Warning, TEXT("Throttle"));
+//}
+//
+//void AWheeledVehiclePawn::ApplySteering(float Value)
+//{
+//	UWheeledVehicleMovementComponent* VehicleMovementComponent = GetVehicleMovementComponent();
+//	VehicleMovementComponent->SetSteeringInput(Value);
+//
+//	//UE_LOG(LogTemp, Warning, TEXT("Steer"));
+//}
+//
 void AWheeledVehiclePawn::LookUp(float Value)
 {
 	if (Value != 0)
@@ -92,15 +92,15 @@ void AWheeledVehiclePawn::Turn(float Value)
 		//UE_LOG(LogTemp, Warning, TEXT("Turn"));
 	}
 }
-
-void AWheeledVehiclePawn::OnHandbrakePressed()
-{
-	GetVehicleMovementComponent()->SetHandbrakeInput(true);
-
-}
-
-void AWheeledVehiclePawn::OnHandbrakeReleased()
-{
-	GetVehicleMovementComponent()->SetHandbrakeInput(false);
-}
-
+//
+//void AWheeledVehiclePawn::OnHandbrakePressed()
+//{
+//	GetVehicleMovementComponent()->SetHandbrakeInput(true);
+//
+//}
+//
+//void AWheeledVehiclePawn::OnHandbrakeReleased()
+//{
+//	GetVehicleMovementComponent()->SetHandbrakeInput(false);
+//}
+//

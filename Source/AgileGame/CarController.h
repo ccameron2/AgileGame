@@ -27,11 +27,11 @@ public:
 
 
 private:
-	virtual void CallForward(float AxisValue);
+	//virtual void CallForward(float AxisValue);
 	virtual void CallTurn(float AxisValue);
-	virtual void CallApplySteering(float Value);
+	//virtual void CallApplySteering(float Value);
 	virtual void CallLookUp(float Value);
-	virtual void CallOnHandbrakePressed();
-	virtual void CallOnHandbrakeReleased();
+	//virtual void CallOnHandbrakePressed();
+	//virtual void CallOnHandbrakeReleased();
 
 };
